@@ -1,7 +1,14 @@
+from selenium.webdriver.common.by import By
+
+
 class Url:
     MAIN_PAGE_URL = 'https://stellarburgers.nomoreparties.site/'
     LOGIN_URL = 'https://stellarburgers.nomoreparties.site/login'
     FEED_PAGE_URL = 'https://stellarburgers.nomoreparties.site/feed'
+
+
+class Overlay:
+    OVERLAY = By.XPATH, '//*[contains(@class, "Modal_modal_overlay__")]'
 
 
 class LogData:

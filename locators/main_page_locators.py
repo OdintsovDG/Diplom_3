@@ -3,8 +3,6 @@ from selenium.webdriver.common.by import By
 
 class MainPageLocators:
 
-    # Кнопка перехода в личный кабинет
-    PERSONAL_AREA = By.XPATH, '//*[text()="Личный Кабинет"]'
     # Кнопка перехода в "Конструктор"
     CONSTRUCTOR_BUTTON = By.XPATH, '//p[text() = "Конструктор"]'
     # Заголовок в разделе "Конструктор"
@@ -33,5 +31,3 @@ class MainPageLocators:
     # Закрыть всплывающее окно подтверждения, с номером заказа
     CLOSE_BUTTON_DETAILS = By.XPATH, (
         '//*[@class="Modal_modal_opened__3ISw4 Modal_modal__P3_V5"]//button')
-    # Оверлей
-    OVERLAY = By.XPATH, '//*[contains(@class, "Modal_modal_overlay__")]'

@@ -1,8 +1,9 @@
 from selenium.webdriver import ActionChains
+from selenium.common import TimeoutException
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 import allure
-from data import Timer
+from data import Timer, Overlay
 
 
 class BasePage:
@@ -60,3 +61,11 @@ class BasePage:
         from_element = self.find_element_with_wait(element_from)
         to_element = self.find_element_with_wait(element_to)
         action.drag_and_drop(from_element, to_element).perform()
+
+    @allure.step('Ожидание исчезновения модального окна')
+    def wait_for_overlay_disappearance(self):
+        try:
+            (WebDriverWait(self.driver, Timer.TIMEOUT_2).until_not
+             (expected_conditions.visibility_of_element_located(Overlay.OVERLAY)))
+        except TimeoutException:
+            raise TimeoutException(f'Оверлей не исчезает, время ожидания: {Timer.TIMEOUT_2}')
