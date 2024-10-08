@@ -1,0 +1,72 @@
+from selenium.webdriver import ActionChains
+from selenium.common import TimeoutException
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+from locators.switch_page_locators import SwitchPageLocators
+import allure
+from data import Timer
+
+
+class BasePage:
+
+    @allure.step('Подгружаем драйвер в конструктор')
+    def __init__(self, driver):
+        self.driver = driver
+
+    @allure.step('Загружаем страницу')
+    def get_url(self, url):
+        self.driver.get(url)
+
+    @allure.step('Ищем элемент на странице с ожиданием')
+    def find_element_with_wait(self, locator):
+        WebDriverWait(self.driver, Timer.TIMEOUT).until(expected_conditions.visibility_of_element_located(locator))
+        return self.driver.find_element(*locator)
+
+    @allure.step('Ожидаем появление элемента на странице (долго)')
+    def wait_for_visibility(self, locator):
+        WebDriverWait(self.driver, Timer.TIMEOUT_2).until(expected_conditions.visibility_of_element_located(locator))
+
+    @allure.step('Кликаем на элемент')
+    def click_on_element(self, locator):
+        element = self.find_element_with_wait(locator)
+        element.click()
+
+    @allure.step('Ищем элемент на странице с ожиданием возможности нажатия')
+    def find_element_with_wait_to_click(self, locator):
+        WebDriverWait(self.driver, Timer.TIMEOUT).until(expected_conditions.element_to_be_clickable(locator))
+        return self.driver.find_element(*locator)
+
+    @allure.step('Кликаем на элемент с ожиданием')
+    def click_on_element_with_wait(self, locator):
+        element = self.find_element_with_wait_to_click(locator)
+        element.click()
+
+    @allure.step('Получаем текст элемента')
+    def get_text_from_element(self, locator):
+        element = self.find_element_with_wait(locator)
+        return element.text
+
+    @allure.step('Вводим текст в элемент')
+    def set_text_to_element(self, locator, text):
+        element = self.find_element_with_wait(locator)
+        element.send_keys(text)
+
+    @allure.step('Получаем текст элементов')
+    def get_text_from_elements(self, locator):
+        element = self.find_element_with_wait(locator)
+        return element.text
+
+    @allure.step('Перетаскиваем элемент')
+    def drag_and_drop(self, element_from, element_to):
+        action = ActionChains(self.driver)
+        from_element = self.find_element_with_wait(element_from)
+        to_element = self.find_element_with_wait(element_to)
+        action.drag_and_drop(from_element, to_element).perform()
+
+    @allure.step('Ожидание исчезновения модального окна')
+    def wait_for_overlay_disappearance(self):
+        try:
+            (WebDriverWait(self.driver, Timer.TIMEOUT_2).until_not
+             (expected_conditions.visibility_of_element_located(SwitchPageLocators.OVERLAY)))
+        except TimeoutException:
+            raise TimeoutException(f'Оверлей не исчезает, время ожидания: {Timer.TIMEOUT_2}')
