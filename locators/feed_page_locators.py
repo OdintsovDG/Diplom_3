@@ -19,3 +19,5 @@ class FeedPageLocators:
     ORDERS_DONE_ALLTIME = By.XPATH, '(.//*[contains(@class, "OrderFeed_number")])[1]'
     # Выполнено заказов за сегодня
     ORDERS_DONE_TODAY = By.XPATH, '(.//*[contains(@class, "OrderFeed_number")])[2]'
+    # Overlay
+    OVERLAY = By.XPATH, '//*[contains(@class, "Modal_modal_overlay__")]'

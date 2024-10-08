@@ -31,3 +31,5 @@ class MainPageLocators:
     # Закрыть всплывающее окно подтверждения, с номером заказа
     CLOSE_BUTTON_DETAILS = By.XPATH, (
         '//*[@class="Modal_modal_opened__3ISw4 Modal_modal__P3_V5"]//button')
+    # Overlay
+    OVERLAY = By.XPATH, '//*[contains(@class, "Modal_modal_overlay__")]'

@@ -15,3 +15,5 @@ class SwitchPageLocators:
     ORDER_FEED_BUTTON = By.XPATH, './/*[contains(@href, "feed")]'
     # Заголовок в разделе "Лента заказов"
     ORDER_FEED = By.XPATH, './/*[text()="Лента заказов"]'
+    # Overlay
+    OVERLAY = By.XPATH, '//*[contains(@class, "Modal_modal_overlay__")]'

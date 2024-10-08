@@ -2,8 +2,9 @@ from selenium.webdriver import ActionChains
 from selenium.common import TimeoutException
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from locators.switch_page_locators import SwitchPageLocators
 import allure
-from data import Timer, Overlay
+from data import Timer
 
 
 class BasePage:
@@ -66,6 +67,6 @@ class BasePage:
     def wait_for_overlay_disappearance(self):
         try:
             (WebDriverWait(self.driver, Timer.TIMEOUT_2).until_not
-             (expected_conditions.visibility_of_element_located(Overlay.OVERLAY)))
+             (expected_conditions.visibility_of_element_located(SwitchPageLocators.OVERLAY)))
         except TimeoutException:
             raise TimeoutException(f'Оверлей не исчезает, время ожидания: {Timer.TIMEOUT_2}')

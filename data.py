@@ -7,10 +7,6 @@ class Url:
     FEED_PAGE_URL = 'https://stellarburgers.nomoreparties.site/feed'
 
 
-class Overlay:
-    OVERLAY = By.XPATH, '//*[contains(@class, "Modal_modal_overlay__")]'
-
-
 class LogData:
     EMAIL = 'odintsov_08@yandex.ru'
     PASSWORD = '23552355'

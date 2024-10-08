@@ -14,3 +14,5 @@ class ForgotPasswordPageLocators:
     # Кнопка "Показать/скрыть пароль"
     ACTION_BUTTON_ICON = By.XPATH, '//div[@class="input__icon input__icon-action"]'
     ACTION_BUTTON_ICON_ON = By.XPATH, '//*[contains(@class, "placeholder-focused") and text()="Пароль"]'
+    # Overlay
+    OVERLAY = By.XPATH, '//*[contains(@class, "Modal_modal_overlay__")]'

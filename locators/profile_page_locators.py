@@ -17,3 +17,5 @@ class ProfilePageLocators:
     PASSWORD_FIELD = By.XPATH, '//input[@type = "password"]'
     # Кнопка "Войти" в форме ЛК
     LOGIN_BUTTON_IN_PA = By.XPATH, '//button[text() = "Войти"]'
+    # Overlay
+    OVERLAY = By.XPATH, '//*[contains(@class, "Modal_modal_overlay__")]'
